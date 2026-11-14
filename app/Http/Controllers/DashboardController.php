@@ -9,9 +9,9 @@ class DashboardController extends Controller
 {
     public function index(Request $request)
     {
-        // 3 Widget Ringkasan Statistik Sesuai Soal Paket 1
+        // 3 Widget Ringkasan Statistik Sesuai Wireframe
         $totalJenis = Item::count();
-        $totalStok = Item::sum('stok');
+        $totalStok = Item::sum('stok') ?? 0;
         $totalRusak = Item::where('kondisi', 'Rusak')->count();
 
         // Filter Kategori, Filter Kondisi, & Pencarian Kode/Nama Barang

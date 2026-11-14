@@ -11,7 +11,20 @@ class ItemController extends Controller
 {
     public function index(Request $request)
     {
-        return redirect()->route('dashboard', $request->query());
+        $items = Item::query()
+            ->when($request->search, function ($q) use ($request) {
+                $q->where(function ($sub) use ($request) {
+                    $sub->where('nama_barang', 'like', '%'.$request->search.'%')
+                        ->orWhere('kode_barang', 'like', '%'.$request->search.'%');
+                });
+            })
+            ->when($request->kategori, fn ($q) => $q->where('kategori', $request->kategori))
+            ->when($request->kondisi, fn ($q) => $q->where('kondisi', $request->kondisi))
+            ->latest()
+            ->paginate(10)
+            ->withQueryString();
+
+        return view('items.index', compact('items'));
     }
 
     public function create()
@@ -21,7 +34,6 @@ class ItemController extends Controller
 
     public function store(Request $request)
     {
-        // Validasi sesuai soal: kode_barang unik, nama_barang wajib, stok minimal 0
         $validated = $request->validate([
             'kode_barang' => ['required', 'string', 'max:50', 'unique:items,kode_barang'],
             'nama_barang' => ['required', 'string', 'max:255'],
@@ -40,12 +52,12 @@ class ItemController extends Controller
 
         Item::create($validated);
 
-        return redirect()->route('dashboard')->with('success', 'Barang baru berhasil ditambahkan!');
+        return redirect()->route('items.index')->with('success', 'Barang baru berhasil ditambahkan!');
     }
 
     public function show(Item $item)
     {
-        return redirect()->route('dashboard');
+        return redirect()->route('items.index');
     }
 
     public function edit(Item $item)
@@ -78,7 +90,7 @@ class ItemController extends Controller
 
         $item->update($validated);
 
-        return redirect()->route('dashboard')->with('success', 'Data barang berhasil diperbarui!');
+        return redirect()->route('items.index')->with('success', 'Data barang berhasil diperbarui!');
     }
 
     public function destroy(Item $item)
@@ -88,6 +100,6 @@ class ItemController extends Controller
         }
         $item->delete();
 
-        return redirect()->route('dashboard')->with('success', 'Barang berhasil dihapus!');
+        return redirect()->route('items.index')->with('success', 'Barang berhasil dihapus!');
     }
 }
