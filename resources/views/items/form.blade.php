@@ -47,8 +47,12 @@
 
         <p>
             <label>Foto Barang (Opsional):</label><br>
+            @if($item->exists && $item->gambar)
+                <img src="{{ asset('storage/' . $item->gambar) }}" alt="{{ $item->nama_barang }}" width="120" style="margin-bottom: 8px; border-radius: 4px;"><br>
+                <small>Pilih file baru jika ingin mengganti foto saat ini.</small><br>
+            @endif
             <input type="file" name="gambar" accept="image/*">
-            @error('gambar') <br><small>{{ $message }}</small> @enderror
+            @error('gambar') <br><small style="color: red;">{{ $message }}</small> @enderror
         </p>
 
         <p>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Item;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 
 class ItemController extends Controller
 {
@@ -22,21 +23,29 @@ class ItemController extends Controller
     {
         // Validasi sesuai soal: kode_barang unik, nama_barang wajib, stok minimal 0
         $validated = $request->validate([
-            'kode_barang' => 'required|string|max:50|unique:items,kode_barang',
-            'nama_barang' => 'required|string|max:255',
-            'kategori' => 'required|string|max:100',
-            'stok' => 'required|integer|min:0',
-            'kondisi' => 'required|in:Baik,Rusak',
-            'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'kode_barang' => ['required', 'string', 'max:50', 'unique:items,kode_barang'],
+            'nama_barang' => ['required', 'string', 'max:255'],
+            'kategori' => ['required', 'string', 'max:100'],
+            'stok' => ['required', 'integer', 'min:0'],
+            'kondisi' => ['required', 'in:Baik,Rusak'],
+            'gambar' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
         ]);
 
         if ($request->hasFile('gambar')) {
-            $validated['gambar'] = $request->file('gambar')->store('items', 'public');
+            $file = $request->file('gambar');
+            if ($file) {
+                $validated['gambar'] = $file->store('items', 'public');
+            }
         }
 
         Item::create($validated);
 
         return redirect()->route('dashboard')->with('success', 'Barang baru berhasil ditambahkan!');
+    }
+
+    public function show(Item $item)
+    {
+        return redirect()->route('dashboard');
     }
 
     public function edit(Item $item)
@@ -47,19 +56,24 @@ class ItemController extends Controller
     public function update(Request $request, Item $item)
     {
         $validated = $request->validate([
-            'kode_barang' => 'required|string|max:50|unique:items,kode_barang,'.$item->id,
-            'nama_barang' => 'required|string|max:255',
-            'kategori' => 'required|string|max:100',
-            'stok' => 'required|integer|min:0',
-            'kondisi' => 'required|in:Baik,Rusak',
-            'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'kode_barang' => ['required', 'string', 'max:50', Rule::unique('items', 'kode_barang')->ignore($item->id)],
+            'nama_barang' => ['required', 'string', 'max:255'],
+            'kategori' => ['required', 'string', 'max:100'],
+            'stok' => ['required', 'integer', 'min:0'],
+            'kondisi' => ['required', 'in:Baik,Rusak'],
+            'gambar' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
         ]);
 
         if ($request->hasFile('gambar')) {
-            if ($item->gambar) {
+            if ($item->gambar && Storage::disk('public')->exists($item->gambar)) {
                 Storage::disk('public')->delete($item->gambar);
             }
-            $validated['gambar'] = $request->file('gambar')->store('items', 'public');
+            $file = $request->file('gambar');
+            if ($file) {
+                $validated['gambar'] = $file->store('items', 'public');
+            }
+        } else {
+            unset($validated['gambar']);
         }
 
         $item->update($validated);
@@ -69,7 +83,7 @@ class ItemController extends Controller
 
     public function destroy(Item $item)
     {
-        if ($item->gambar) {
+        if ($item->gambar && Storage::disk('public')->exists($item->gambar)) {
             Storage::disk('public')->delete($item->gambar);
         }
         $item->delete();

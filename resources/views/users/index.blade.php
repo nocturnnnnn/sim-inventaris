@@ -4,7 +4,12 @@
     <hr>
 
     @if(session('success'))
-        <p><b>Notifikasi:</b> {{ session('success') }}</p>
+        <p style="color: green;"><b>Notifikasi:</b> {{ session('success') }}</p>
+        <hr>
+    @endif
+
+    @if(session('error'))
+        <p style="color: red;"><b>Peringatan:</b> {{ session('error') }}</p>
         <hr>
     @endif
 
