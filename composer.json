@@ -1,9 +1,9 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "laravel/laravel",
+    "name": "nocturn/sim-inventaris",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
-    "keywords": ["laravel", "framework"],
+    "description": "Sistem Informasi Manajemen Inventaris modern berbasis Laravel 12 & Tailwind CSS.",
+    "keywords": ["laravel", "sim-inventaris", "inventory-management", "laravel12"],
     "license": "MIT",
     "require": {
         "php": "^8.2",

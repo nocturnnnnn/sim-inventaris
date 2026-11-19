@@ -92,6 +92,17 @@
                                 <span>Kategori</span>
                             </a>
 
+                            <!-- Data Supplier -->
+                            <a href="{{ route('suppliers.index') }}"
+                               class="flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-sm font-medium transition {{ request()->routeIs('suppliers.*') ? 'bg-[#1e2e4a] text-white shadow-sm border border-indigo-500/30' : 'text-slate-300 hover:bg-slate-800/60 hover:text-white' }}">
+                                <span class="w-5 h-5 flex items-center justify-center {{ request()->routeIs('suppliers.*') ? 'text-indigo-400' : 'text-slate-400' }}">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.948c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75"/>
+                                    </svg>
+                                </span>
+                                <span>Data Supplier</span>
+                            </a>
+
                             <!-- Kelola User (Admin Khusus) -->
                             @if(auth()->user()->role === 'admin')
                                 <a href="{{ route('users.index') }}"

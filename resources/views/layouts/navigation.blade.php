@@ -18,6 +18,9 @@
                     <x-nav-link :href="route('items.index')" :active="request()->routeIs('items.*')">
                         {{ __('Kelola Barang') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('suppliers.index')" :active="request()->routeIs('suppliers.*')">
+                        {{ __('Data Supplier') }} 
+                    </x-nav-link>
                     @if(Auth::user()->role === 'admin')
                         <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
                             {{ __('Kelola User') }}
@@ -25,7 +28,7 @@
                     @endif
                 </div>
             </div>
-
+ 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">

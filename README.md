@@ -1,59 +1,169 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 📦 SIM INVENTARIS (Sistem Informasi Manajemen Inventaris)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+[![Laravel](https://img.shields.io/badge/Laravel-12.x-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)](https://laravel.com)
+[![PHP](https://img.shields.io/badge/PHP-8.2%2B-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://php.net)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.x%20%2F%204.x-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
+[![Alpine.js](https://img.shields.io/badge/Alpine.js-3.x-8BC0D0?style=for-the-badge&logo=alpinedotjs&logoColor=white)](https://alpinejs.dev)
+[![MySQL](https://img.shields.io/badge/MySQL-Database-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://mysql.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](LICENSE)
 
-## About Laravel
+Aplikasi web modern berbasis **Laravel 12** dan **Tailwind CSS** untuk pencatatan, pelacakan, dan tata kelola sarana prasarana, aset inventaris fisik, rekanan penyedia (*supplier*), serta penyusunan laporan operasional dan cetak rekapitulasi terpadu.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 👤 Identitas Pengembang
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+* **Nama:** Zala Risky Pratama
+* **NIM:** 2024150064
+* **Mata Kuliah:** Pemrograman Web (Semester 5)
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## ✨ Fitur Utama Sistem
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 1. 📊 Executive Dashboard & Metrik Real-Time
+* **3 Kartu Ringkasan Statistik:**
+  * `TOTAL ITEM BARANG` (Total variasi/jenis barang terdata).
+  * `TOTAL UNIT STOK` (Akumulasi kuantitas stok fisik tersedia).
+  * `BARANG RUSAK` (Deteksi dini aset rusak/afkir agar tidak tercampur).
+* **Live Search & Multi-Filter:** Pencarian cepat berdasarkan Kode Barang atau Nama Barang, disertai filter kategori dan filter kondisi kelayakan.
+* **Tabel Interaktif:** Didukung pagination responsif dan visual status badge.
 
-## Laravel Sponsors
+### 2. 📦 Manajemen Inventaris Barang (CRUD)
+* Kode barang unik (`BRG-xxx`) dengan validasi otomatis.
+* Pengelompokan kategori barang serta pencatatan stok fisik.
+* Status kondisi barang: **Baik** (Emerald) atau **Rusak** (Rose).
+* Fitur upload foto/gambar fisik aset inventaris ke storage publik.
+* Notifikasi *toast flash message* saat data berhasil dibuat, diperbarui, atau dihapus.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 3. 🏷️ Kategori Inventaris & Agregasi Otomatis
+* Monitoring sebaran aset per kategori: *Elektronik*, *Mebel*, *Alat Tulis*, *Laboratorium*, dll.
+* Kalkulasi total jenis, total unit, barang baik, dan barang rusak di setiap kategori secara otomatis via database query aggregation.
 
-### Premium Partners
+### 4. 🚚 Manajemen Data Rekanan (Supplier)
+* Pencatatan vendor/supplier penyedia barang (`SPL-xxx`).
+* Informasi kontak telepon, alamat operasional, dan status keaktifan rekanan (**Aktif** / **Nonaktif**).
+* Statistik kartu mitra aktif vs tidak aktif.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### 5. 📑 Rekapitulasi Laporan & Siap Cetak (Print / PDF)
+* Dashboard analitik laporan berkala dengan statistik 4 kuadran.
+* Layout khusus siap cetak (*print-friendly* & PDF-ready) lengkap dengan kop surat resmi instansi, meta informasi cetak, dan kolom validasi tanda tangan pengelola inventaris.
 
-## Contributing
+### 6. 👥 Kontrol Akses Berjenjang (RBAC: Admin & Staff)
+* **Administrator:** Akses penuh seluruh sistem, termasuk menu **Kelola User** untuk mengubah peran (role) staf/admin secara instan.
+* **Staf Gudang:** Akses operasional harian (Dashboard, Data Barang, Kategori, Supplier, dan Laporan).
+* Keamanan hashing kata sandi menggunakan `Hash::make()` dengan Bcrypt rounds standar industri.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+## 🛠️ Tech Stack & Kebutuhan Sistem
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+* **PHP:** Versi 8.2 atau lebih baru
+* **PHP Extensions:** `pdo_mysql`, `mbstring`, `openssl`, `tokenizer`, `xml`, `ctype`, `json`, `fileinfo`
+* **Composer:** 2.x+
+* **Node.js & NPM:** Node.js 18+ & NPM 9+
+* **Basis Data:** MySQL 8.x / MariaDB 10.x+ (atau SQLite)
+* **Web Server:** Nginx / Apache / PHP Built-in Server
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## 🚀 Panduan Instalasi & Menjalankan
 
-## License
+### 1. Clone Repositori
+```bash
+git clone https://github.com/nocturnnnnn/sim-inventaris.git
+cd sim-inventaris
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 2. Pasang Dependensi PHP & Node.js
+```bash
+composer install
+npm install
+```
+
+### 3. Konfigurasi Environment (.env)
+Salin berkas konfigurasi template:
+```bash
+cp .env.example .env
+```
+Buka berkas `.env` dan sesuaikan koneksi database Anda:
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=sim_inventaris
+DB_USERNAME=root
+DB_PASSWORD=
+# Jika menggunakan socket Unix lokal:
+# DB_SOCKET=/tmp/mysql.sock
+```
+
+### 4. Generate Kunci Enkripsi & Migrasi Database
+```bash
+php artisan key:generate
+php artisan storage:link
+php artisan migrate:fresh --seed
+```
+
+### 5. Jalankan Aplikasi
+Jalankan kompilasi frontend Vite:
+```bash
+npm run dev
+```
+
+Buka terminal terpisah dan jalankan server lokal Laravel:
+```bash
+php artisan serve
+```
+Akses aplikasi melalui browser di: `http://localhost:8000`
+
+---
+
+## 🔑 Akun Default Sistem (Hasil Seeder)
+
+| Peran (Role) | Email Login | Password Default | Akses Menu |
+| :--- | :--- | :--- | :--- |
+| **Administrator** | `admin@inventaris.com` | `password` | Semua Menu + Manajemen User |
+| **Staf Gudang** | `staff@inventaris.com` | `password` | Dashboard, Barang, Supplier, Kategori, Laporan |
+
+---
+
+## 📂 Struktur Direktori Proyek
+
+```
+sim-inventaris/
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   ├── Auth/                     # Autentikasi Laravel Breeze
+│   │   │   ├── CategoryController.php    # Agregasi stok kategori
+│   │   │   ├── DashboardController.php   # Statistik ringkasan utama
+│   │   │   ├── ItemController.php        # CRUD Inventaris Barang & upload foto
+│   │   │   ├── ReportController.php      # Laporan & modul cetak PDF
+│   │   │   ├── SupplierController.php    # CRUD Supplier & Rekanan
+│   │   │   ├── UserController.php        # Manajemen peran pengguna (Admin)
+│   │   │   └── ProfileController.php     # Kelola akun & profil
+│   │   └── Middleware/
+│   │       └── RoleMiddleware.php        # Guard pembatas hak akses peran
+│   └── Models/
+│       ├── User.php                      # Model pengguna & role
+│       ├── Item.php                      # Model inventaris fisik
+│       └── Supplier.php                  # Model rekanan penyedia
+├── database/
+│   ├── migrations/                       # Skema migrasi tabel
+│   └── seeders/
+│       └── DatabaseSeeder.php            # Seeder akun, barang, & supplier
+├── resources/
+│   ├── css/ & js/                        # Konfigurasi Tailwind & JavaScript
+│   └── views/                            # Blade view templates & components
+├── routes/
+│   ├── web.php                           # Definisi rute aplikasi & middleware
+│   └── auth.php                          # Rute autentikasi
+└── README.md
+```
+
+---
+
+## 📜 Lisensi
+Aplikasi ini dikembangkan di bawah lisensi terbuka [MIT](LICENSE).
+Hak Cipta (c) 2026 Zala Risky Pratama.

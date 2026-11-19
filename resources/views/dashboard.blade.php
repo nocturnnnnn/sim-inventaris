@@ -14,7 +14,7 @@
                 </div>
             @endif
 
-            <!-- 3 Stat Widgets Row (Exact wireframe on screen) -->
+            <!-- Widget Ringkasan Statistik -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
                 <!-- Widget 1: Total Item Barang -->
                 <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center justify-between">
@@ -187,7 +187,7 @@
                     </table>
                 </div>
 
-                <!-- Pagination matching wireframe footer -->
+                <!-- Pagination Halaman -->
                 <div class="px-6 py-4 border-t border-gray-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs text-gray-500">
                     <div>
                         Menampilkan
