@@ -19,6 +19,44 @@ Aplikasi web modern berbasis **Laravel 12** dan **Tailwind CSS** untuk pencatata
 
 ---
 
+## 📸 Tangkapan Layar Antarmuka Sistem (Screenshots)
+
+### 1. Dashboard Utama & Metrik Statistik
+![Dashboard](screenshots/01-dashboard.png)
+*Tampilan dashboard utama dengan ringkasan 3 metrik kunci (Total Item Barang, Total Stok Fisik, Barang Rusak/Afkir), live search kode/nama barang, multi-filter kategori dan kondisi, serta tabel inventaris interaktif.*
+
+---
+
+### 2. Manajemen Data Barang & Form Input
+| Data Inventaris Barang | Form Tambah Barang Baru |
+| :---: | :---: |
+| ![Data Barang](screenshots/02-data-barang.png) | ![Tambah Barang](screenshots/03-tambah-barang.png) |
+| *Tabel katalog barang lengkap dengan status kondisi kelayakan* | *Form input barang terintegrasi dengan upload gambar fisik* |
+
+---
+
+### 3. Kategori Inventaris Barang & Agregasi Otomatis
+![Kategori Inventaris](screenshots/04-kategori.png)
+*Visualisasi kartu kategori (Elektronik, Mebel, Alat Tulis, Laboratorium) dengan agregasi otomatis jumlah unit stok, kondisi baik, dan rusak.*
+
+---
+
+### 4. Manajemen Rekanan (Supplier)
+| Data Supplier & Penyedia Barang | Form Tambah Supplier Baru |
+| :---: | :---: |
+| ![Data Supplier](screenshots/05-data-supplier.png) | ![Tambah Supplier](screenshots/06-tambah-supplier.png) |
+| *Daftar rekanan logistik dengan kartu ringkasan status aktif vs nonaktif* | *Form registrasi supplier lengkap dengan kontak dan alamat kantor* |
+
+---
+
+### 5. Manajemen Pengguna (Khusus Admin) & Laporan Rekapitulasi
+| Kelola User & Hak Akses (RBAC) | Laporan Rekapitulasi & Cetak PDF |
+| :---: | :---: |
+| ![Kelola User](screenshots/07-kelola-user.png) | ![Laporan Rekapitulasi](screenshots/08-laporan.png) |
+| *Panel administrator untuk mengubah peran (role) staf dan admin* | *Halaman rekapitulasi 4 kuadran & tombol Cetak Laporan PDF resmi* |
+
+---
+
 ## ✨ Fitur Utama Sistem
 
 ### 1. 📊 Executive Dashboard & Metrik Real-Time
@@ -159,6 +197,7 @@ sim-inventaris/
 ├── routes/
 │   ├── web.php                           # Definisi rute aplikasi & middleware
 │   └── auth.php                          # Rute autentikasi
+├── screenshots/                          # Tangkapan layar antarmuka aplikasi
 └── README.md
 ```
 
